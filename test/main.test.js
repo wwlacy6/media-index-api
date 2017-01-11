@@ -5,9 +5,10 @@ import MediaIndex from '../src/media-index';
 import Config from './config';
 
 const root = (typeof self === 'object' && self.self === self && self) || (typeof global === 'object' && global.global === global && global) || this; //eslint-disable-line
-const user_id = 'aaronb';
 
 root.Config = Config;
+
+const user_id = Config.user_id[Config.env];
 
 async function get_media_id() {
   const search_response = await MediaIndex.search();
