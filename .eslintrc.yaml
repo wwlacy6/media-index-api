@@ -1,0 +1,17 @@
+extends:
+  - './node_modules/lint-rules/eslint/base.js'
+  - './node_modules/lint-rules/eslint/esnext.js'
+globals:
+  Config: true
+rules:
+  max-len:
+    - warn
+    - 150
+  array-bracket-spacing:
+    - error
+    - always
+    - objectsInArrays: false
+      arraysInArrays: false
+      singleValue: false
+  babel/array-bracket-spacing:
+    - off
