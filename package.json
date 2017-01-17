@@ -2,7 +2,7 @@
   "name": "media-index-api",
   "version": "1.0.0",
   "description": "API module for the MA Media Index",
-  "main": "MediaIndex.js",
+  "main": "dist/media-index.js",
   "scripts": {
     "build": "babel ./src -d ./dist",
     "lint": "eslint ./src",
@@ -37,6 +37,10 @@
   ],
   "author": "mobile@marketamerica.com",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ma-shop/media-index-api.git"
+  },
   "dependencies": {
     "universal-fetch": "^1.0.0"
   },
