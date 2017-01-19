@@ -237,12 +237,12 @@ export default {
 
   /// @name addToPlaylist
   /// @description - Add media to a playlist
-  /// @arg {Array} media_ids - (required) An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media - (required) An array of media_id's to add to associate to the playlist
   /// @arg {String} playlist_id - (required) The UUID of the playlist
   /// @arg {String} user_id - (required) The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   addToPlaylist({
-    media_ids,
+    media,
     playlist_id,
     user_id
   } = {}) {
@@ -251,7 +251,7 @@ export default {
       {
         method: 'POST',
         body: JSON.stringify({
-          media_ids
+          media
         })
       }
     );
@@ -263,7 +263,7 @@ export default {
   /// @arg {String} description - (optional) A description for the playlist
   /// @arg {Boolean} discoverable - (optional) A boolean value indicating whether or not the playlist is discoverable
   /// @arg {Array} locale - (optional) Valid values are: en, en_us, zh, zh_tw, zh_hk, zh_cn, fr, fr_ca, es, es_mx, es_es
-  /// @arg {Array} media_ids - (optional) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media - (optional) - An array of media_id's to add to associate to the playlist
   /// @arg {String} owner_name - (optional) The name of the owner / user that is creating the playlist
   /// @arg {String} playlist_name - (required) The name of the playlist
   /// @arg {String} playlist_status - (optional) The status of the playlist.  Valid values are: active, inactive
@@ -276,7 +276,7 @@ export default {
     description,
     discoverable,
     locale,
-    media_ids,
+    media,
     owner_name,
     playlist_name,
     playlist_status,
@@ -293,7 +293,7 @@ export default {
           description,
           discoverable,
           locale,
-          media_ids,
+          media,
           owner_name,
           playlist_name,
           playlist_status,
@@ -435,12 +435,12 @@ export default {
 
   /// @name deleteFromPlaylist
   /// @description - Delete a media from user's playlist
-  /// @arg {Array} media_ids (required) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media (required) - An array of media_id's to add to associate to the playlist
   /// @arg {String} playlist_id (required) - The UUID of the playlist
   /// @arg {String} user_id (required) - The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   deleteFromPlaylist({
-    media_ids,
+    media,
     playlist_id,
     user_id
   } = {}) {
@@ -449,7 +449,7 @@ export default {
       {
         method: 'DELETE',
         params: {
-          media_ids
+          media
         }
       }
     );
@@ -461,7 +461,7 @@ export default {
   /// @arg {String} description - (optional) A description for the playlist
   /// @arg {Boolean} discoverable - (optional) A boolean value indicating whether or not the playlist is discoverable
   /// @arg {Array} locale - (optional) Valid values are: en, en_us, zh, zh_tw, zh_hk, zh_cn, fr, fr_ca, es, es_mx, es_es
-  /// @arg {Array} media_ids - (optional) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media - (optional) - An array of media_id's to add to associate to the playlist
   /// @arg {String} owner_name - (optional) The name of the owner / user that is creating the playlist
   /// @arg {String} playlist_id -  (required) The unique id of the playlist
   /// @arg {String} playlist_name - (required) The name of the playlist
@@ -475,7 +475,7 @@ export default {
     description,
     discoverable,
     locale,
-    media_ids,
+    media,
     owner_name,
     playlist_id,
     playlist_name,
@@ -493,7 +493,7 @@ export default {
           description,
           discoverable,
           locale,
-          media_ids,
+          media,
           owner_name,
           playlist_name,
           playlist_status,
