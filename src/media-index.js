@@ -319,7 +319,7 @@ export default {
       {
         method: 'DELETE',
         body: JSON.stringify({
-          playlist_name,
+          playlist_id,
           user_id
         })
       }
