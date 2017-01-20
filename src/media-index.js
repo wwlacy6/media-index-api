@@ -317,11 +317,7 @@ export default {
     return service(
       `/media/v1/app/${root.Config.app}/user/${user_id}/playlists/${playlist_id}`,
       {
-        method: 'DELETE',
-        body: JSON.stringify({
-          playlist_id,
-          user_id
-        })
+        method: 'DELETE'
       }
     );
   },
