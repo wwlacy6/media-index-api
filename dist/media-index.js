@@ -294,20 +294,20 @@ exports.default = {
 
   /// @name addToPlaylist
   /// @description - Add media to a playlist
-  /// @arg {Array} media_ids - (required) An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media - (required) An array of media_id's to add to associate to the playlist
   /// @arg {String} playlist_id - (required) The UUID of the playlist
   /// @arg {String} user_id - (required) The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   addToPlaylist: function addToPlaylist() {
     var _ref9 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        media_ids = _ref9.media_ids,
+        media = _ref9.media,
         playlist_id = _ref9.playlist_id,
         user_id = _ref9.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id + '/media', {
       method: 'POST',
       body: (0, _stringify2.default)({
-        media_ids: media_ids
+        media: media
       })
     });
   },
@@ -319,7 +319,7 @@ exports.default = {
   /// @arg {String} description - (optional) A description for the playlist
   /// @arg {Boolean} discoverable - (optional) A boolean value indicating whether or not the playlist is discoverable
   /// @arg {Array} locale - (optional) Valid values are: en, en_us, zh, zh_tw, zh_hk, zh_cn, fr, fr_ca, es, es_mx, es_es
-  /// @arg {Array} media_ids - (optional) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media - (optional) - An array of media_id's to add to associate to the playlist
   /// @arg {String} owner_name - (optional) The name of the owner / user that is creating the playlist
   /// @arg {String} playlist_name - (required) The name of the playlist
   /// @arg {String} playlist_status - (optional) The status of the playlist.  Valid values are: active, inactive
@@ -333,7 +333,7 @@ exports.default = {
         description = _ref10.description,
         discoverable = _ref10.discoverable,
         locale = _ref10.locale,
-        media_ids = _ref10.media_ids,
+        media = _ref10.media,
         owner_name = _ref10.owner_name,
         playlist_name = _ref10.playlist_name,
         playlist_status = _ref10.playlist_status,
@@ -348,7 +348,7 @@ exports.default = {
         description: description,
         discoverable: discoverable,
         locale: locale,
-        media_ids: media_ids,
+        media: media,
         owner_name: owner_name,
         playlist_name: playlist_name,
         playlist_status: playlist_status,
@@ -360,6 +360,22 @@ exports.default = {
   },
 
 
+  /// @name deletePlaylist
+  /// @description Delete a playlist
+  /// @arg {String} playlist_id - (required) The unique id of the playlist
+  /// @arg {String} user_id - The a unique user_id (ufo_id, pc_id, etc.)
+  /// @return {Promise}
+  deletePlaylist: function deletePlaylist() {
+    var _ref11 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        playlist_id = _ref11.playlist_id,
+        user_id = _ref11.user_id;
+
+    return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id, {
+      method: 'DELETE'
+    });
+  },
+
+
   /// @name getPlaylistDetail
   /// @description - retrieve all of the details for playlist given playlist_id
   /// @arg {String} checksum - (optional)  A checksum to compare to the generated calls checksum
@@ -367,10 +383,10 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (i.e. ufo_id, pc_id, etc.)
   /// @return {Promise}
   getPlaylistDetail: function getPlaylistDetail() {
-    var _ref11 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref11.checksum,
-        playlist_id = _ref11.playlist_id,
-        user_id = _ref11.user_id;
+    var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref12.checksum,
+        playlist_id = _ref12.playlist_id,
+        user_id = _ref12.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id, {
       method: 'GET',
@@ -388,10 +404,10 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (i.e. ufo_id, pc_id, etc.)
   /// @return {Promise}
   playlistDetailWithMedia: function playlistDetailWithMedia() {
-    var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref12.checksum,
-        playlist_id = _ref12.playlist_id,
-        user_id = _ref12.user_id;
+    var _ref13 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref13.checksum,
+        playlist_id = _ref13.playlist_id,
+        user_id = _ref13.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id + '/media', {
       method: 'GET',
@@ -408,9 +424,9 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (i.e. ufo_id, pc_id, etc.)
   /// @return {Promise}
   getUserPlaylists: function getUserPlaylists() {
-    var _ref13 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref13.checksum,
-        user_id = _ref13.user_id;
+    var _ref14 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref14.checksum,
+        user_id = _ref14.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists', {
       method: 'GET',
@@ -427,9 +443,9 @@ exports.default = {
   /// @arg {String} playlist_id - (required) The UUID of the playlist
   /// @return {Promise}
   getPublicPlaylistDetail: function getPublicPlaylistDetail() {
-    var _ref14 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref14.checksum,
-        playlist_id = _ref14.playlist_id;
+    var _ref15 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref15.checksum,
+        playlist_id = _ref15.playlist_id;
 
     return service('/media/v1/app/' + root.Config.app + '/playlists/' + playlist_id, {
       method: 'GET',
@@ -446,9 +462,9 @@ exports.default = {
   /// @arg {String} playlist_id - (required) The UUID of the playlist
   /// @return {Promise}
   getPublicPlaylistDetailWithMedia: function getPublicPlaylistDetailWithMedia() {
-    var _ref15 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref15.checksum,
-        playlist_id = _ref15.playlist_id;
+    var _ref16 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref16.checksum,
+        playlist_id = _ref16.playlist_id;
 
     return service('/media/v1/app/' + root.Config.app + '/playlists/' + playlist_id + '/media', {
       method: 'GET',
@@ -466,10 +482,10 @@ exports.default = {
   /// @arg {Array} locale - Valid values are: en, en_us, zh, zh_tw, zh_hk, zh_cn, fr, fr_ca, es, es_mx, es_es
   /// @return {Promise}
   getPublicPlaylists: function getPublicPlaylists() {
-    var _ref16 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref16.checksum,
-        countries = _ref16.countries,
-        locale = _ref16.locale;
+    var _ref17 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref17.checksum,
+        countries = _ref17.countries,
+        locale = _ref17.locale;
 
     return service('/media/v1/app/' + root.Config.app + '/playlists', {
       method: 'GET',
@@ -484,20 +500,20 @@ exports.default = {
 
   /// @name deleteFromPlaylist
   /// @description - Delete a media from user's playlist
-  /// @arg {Array} media_ids (required) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media (required) - An array of media_id's to add to associate to the playlist
   /// @arg {String} playlist_id (required) - The UUID of the playlist
   /// @arg {String} user_id (required) - The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   deleteFromPlaylist: function deleteFromPlaylist() {
-    var _ref17 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        media_ids = _ref17.media_ids,
-        playlist_id = _ref17.playlist_id,
-        user_id = _ref17.user_id;
+    var _ref18 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        media = _ref18.media,
+        playlist_id = _ref18.playlist_id,
+        user_id = _ref18.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id + '/media', {
       method: 'DELETE',
       params: {
-        media_ids: media_ids
+        media: media
       }
     });
   },
@@ -509,7 +525,7 @@ exports.default = {
   /// @arg {String} description - (optional) A description for the playlist
   /// @arg {Boolean} discoverable - (optional) A boolean value indicating whether or not the playlist is discoverable
   /// @arg {Array} locale - (optional) Valid values are: en, en_us, zh, zh_tw, zh_hk, zh_cn, fr, fr_ca, es, es_mx, es_es
-  /// @arg {Array} media_ids - (optional) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media - (optional) - An array of media_id's to add to associate to the playlist
   /// @arg {String} owner_name - (optional) The name of the owner / user that is creating the playlist
   /// @arg {String} playlist_id -  (required) The unique id of the playlist
   /// @arg {String} playlist_name - (required) The name of the playlist
@@ -519,19 +535,19 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   updatePlaylist: function updatePlaylist() {
-    var _ref18 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        countries = _ref18.countries,
-        description = _ref18.description,
-        discoverable = _ref18.discoverable,
-        locale = _ref18.locale,
-        media_ids = _ref18.media_ids,
-        owner_name = _ref18.owner_name,
-        playlist_id = _ref18.playlist_id,
-        playlist_name = _ref18.playlist_name,
-        playlist_status = _ref18.playlist_status,
-        playlist_type = _ref18.playlist_type,
-        tags = _ref18.tags,
-        user_id = _ref18.user_id;
+    var _ref19 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        countries = _ref19.countries,
+        description = _ref19.description,
+        discoverable = _ref19.discoverable,
+        locale = _ref19.locale,
+        media = _ref19.media,
+        owner_name = _ref19.owner_name,
+        playlist_id = _ref19.playlist_id,
+        playlist_name = _ref19.playlist_name,
+        playlist_status = _ref19.playlist_status,
+        playlist_type = _ref19.playlist_type,
+        tags = _ref19.tags,
+        user_id = _ref19.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id, {
       method: 'POST',
@@ -540,7 +556,7 @@ exports.default = {
         description: description,
         discoverable: discoverable,
         locale: locale,
-        media_ids: media_ids,
+        media: media,
         owner_name: owner_name,
         playlist_name: playlist_name,
         playlist_status: playlist_status,
@@ -557,9 +573,9 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   addSubscriptions: function addSubscriptions() {
-    var _ref19 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        playlist_id = _ref19.playlist_id,
-        user_id = _ref19.user_id;
+    var _ref20 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        playlist_id = _ref20.playlist_id,
+        user_id = _ref20.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/subscriptions', {
       method: 'POST',
@@ -576,9 +592,9 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   deleteSubscription: function deleteSubscription() {
-    var _ref20 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        playlist_id = _ref20.playlist_id,
-        user_id = _ref20.user_id;
+    var _ref21 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        playlist_id = _ref21.playlist_id,
+        user_id = _ref21.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/subscriptions/' + playlist_id, {
       method: 'DELETE'
@@ -593,10 +609,10 @@ exports.default = {
   /// @arg {String} playlist_id - (required) The UUID of the playlist
   /// @return {Promise}
   getSubscriptionDetail: function getSubscriptionDetail() {
-    var _ref21 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref21.checksum,
-        user_id = _ref21.user_id,
-        playlist_id = _ref21.playlist_id;
+    var _ref22 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref22.checksum,
+        user_id = _ref22.user_id,
+        playlist_id = _ref22.playlist_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/subscriptions/' + playlist_id, {
       method: 'GET',
@@ -614,10 +630,10 @@ exports.default = {
   /// @arg {String} playlist_id - (required) The UUID of the playlist
   /// @return {Promise}
   getSubscriptionDetailwithMedia: function getSubscriptionDetailwithMedia() {
-    var _ref22 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref22.checksum,
-        user_id = _ref22.user_id,
-        playlist_id = _ref22.playlist_id;
+    var _ref23 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref23.checksum,
+        user_id = _ref23.user_id,
+        playlist_id = _ref23.playlist_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/subscriptions/' + playlist_id + '/media', {
       method: 'GET',
@@ -634,9 +650,9 @@ exports.default = {
   /// @arg {String} user_id - (required) The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
   getUserSubscriptions: function getUserSubscriptions() {
-    var _ref23 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        checksum = _ref23.checksum,
-        user_id = _ref23.user_id;
+    var _ref24 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        checksum = _ref24.checksum,
+        user_id = _ref24.user_id;
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/subscriptions', {
       method: 'GET',
