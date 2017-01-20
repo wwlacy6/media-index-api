@@ -86,6 +86,13 @@ test(async function createPlaylist(t) {
   test_helper(response, t);
 });
 
+test('deletePlaylist', async function deletePlaylist(t) {
+  const playlist_id = await get_playlist_id();
+  await MediaIndex.createPlaylist({ playlist_id, user_id });
+  const response = await MediaIndex.deletePlaylist({ playlist_id, user_id });
+  test_helper(response, t);
+});
+
 test(async function getPlaylistDetail(t) {
   const playlist_id = await get_playlist_id();
   const response = await MediaIndex.getPlaylistDetail({ playlist_id, user_id });

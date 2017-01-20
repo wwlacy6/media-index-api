@@ -305,6 +305,27 @@ export default {
     );
   },
 
+  /// @name deletePlaylist
+  /// @description Delete a playlist
+  /// @arg {String} playlist_id - (required) The unique id of the playlist
+  /// @arg {String} user_id - The a unique user_id (ufo_id, pc_id, etc.)
+  /// @return {Promise}
+  deletePlaylist({
+    playlist_id,
+    user_id
+  } = {}) {
+    return service(
+      `/media/v1/app/${root.Config.app}/user/${user_id}/playlists/${playlist_id}`,
+      {
+        method: 'DELETE',
+        body: JSON.stringify({
+          playlist_id,
+          user_id
+        })
+      }
+    );
+  },
+
   /// @name getPlaylistDetail
   /// @description - retrieve all of the details for playlist given playlist_id
   /// @arg {String} checksum - (optional)  A checksum to compare to the generated calls checksum
