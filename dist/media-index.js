@@ -500,7 +500,7 @@ exports.default = {
 
   /// @name deleteFromPlaylist
   /// @description - Delete a media from user's playlist
-  /// @arg {Array} media (required) - An array of media_id's to add to associate to the playlist
+  /// @arg {Array} media (required) - An array of media_id's to remove from the playlist
   /// @arg {String} playlist_id (required) - The UUID of the playlist
   /// @arg {String} user_id (required) - The a unique user_id (ufo_id, pc_id, etc.)
   /// @return {Promise}
@@ -512,9 +512,9 @@ exports.default = {
 
     return service('/media/v1/app/' + root.Config.app + '/user/' + user_id + '/playlists/' + playlist_id + '/media', {
       method: 'DELETE',
-      params: {
+      body: (0, _stringify2.default)({
         media: media
-      }
+      })
     });
   },
 
