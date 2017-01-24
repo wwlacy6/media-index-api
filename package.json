@@ -1,6 +1,6 @@
 {
   "name": "media-index-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "API module for the MA Media Index",
   "main": "dist/media-index.js",
   "scripts": {
