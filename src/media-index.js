@@ -625,7 +625,7 @@ export default {
 
   authenticate({ username, password } = {}) {
     return service(
-      '/distributor/v1/authentication',
+      '/ufo-security/v1/login',
       {
         method: 'POST',
         body: JSON.stringify({ username, password })

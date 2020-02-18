@@ -667,7 +667,7 @@ exports.default = {
         username = _ref25.username,
         password = _ref25.password;
 
-    return service('/distributor/v1/authentication', {
+    return service('/ufo-security/v1/login', {
       method: 'POST',
       body: (0, _stringify2.default)({ username: username, password: password })
     });
