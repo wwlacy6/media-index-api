@@ -620,7 +620,7 @@ export default {
         }
       }
     );
-  }
+  },
 
   authenticate({ username, password } = {}) {
     return service(
