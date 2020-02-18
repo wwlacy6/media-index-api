@@ -621,12 +621,14 @@ export default {
       }
     );
   }
-};
 
-authenticate({ username, password } = {}) {
-  return service(
-    '/distributor/v1/authentication',
-    method: 'POST',
-    body: JSON.stringify({ username, password })
-  )
-}
+  authenticate({ username, password } = {}) {
+    return service(
+      '/distributor/v1/authentication',
+      {
+        method: 'POST',
+        body: JSON.stringify({ username, password })
+      }
+    );
+  }
+};
