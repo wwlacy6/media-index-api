@@ -41,7 +41,8 @@ var service = function () {
             _context.next = 3;
             return fetch('https://' + root.Config.base_url[root.Config.env] + service_url + '?' + toQueryString(fetch_config.params), (0, _assign2.default)({}, {
               headers: {
-                api_key: root.Config.api_key[root.Config.env]
+                api_key: root.Config.api_key[root.Config.env],
+                Origin: null
               }
             }, fetch_config));
 
