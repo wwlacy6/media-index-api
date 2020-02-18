@@ -8,7 +8,7 @@ async function service(service_url, fetch_config) {
       `https://${root.Config.base_url[root.Config.env]}${service_url}?${toQueryString(fetch_config.params)}`,
       Object.assign({}, {
         headers: {
-          apiKey: root.Config.api_key[root.Config.env]
+          api_key: root.Config.api_key[root.Config.env]
         }
       }, fetch_config)
     );
@@ -622,3 +622,11 @@ export default {
     );
   }
 };
+
+authenticate({ username, password } = {}) {
+  return service(
+    '/distributor/v1/authentication',
+    method: 'POST',
+    body: JSON.stringify({ username, password })
+  )
+}
