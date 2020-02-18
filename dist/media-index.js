@@ -31,7 +31,7 @@ var _typeof3 = _interopRequireDefault(_typeof2);
 //eslint-disable-line
 
 var service = function () {
-  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(service_url, fetch_config) {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(service_url, fetch_config) {
     var response;
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
@@ -41,7 +41,7 @@ var service = function () {
             _context.next = 3;
             return fetch('https://' + root.Config.base_url[root.Config.env] + service_url + '?' + toQueryString(fetch_config.params), (0, _assign2.default)({}, {
               headers: {
-                apiKey: root.Config.api_key[root.Config.env]
+                api_key: root.Config.api_key[root.Config.env]
               }
             }, fetch_config));
 
@@ -659,6 +659,16 @@ exports.default = {
       params: {
         checksum: checksum
       }
+    });
+  },
+  authenticate: function authenticate() {
+    var _ref25 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        username = _ref25.username,
+        password = _ref25.password;
+
+    return service('/distributor/v1/authentication', {
+      method: 'POST',
+      body: (0, _stringify2.default)({ username: username, password: password })
     });
   }
 };
